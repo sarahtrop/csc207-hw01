@@ -4,7 +4,7 @@ public class CaeserCipher {
 	//Encodes a message
 	public static void encode(String message) {
 		int base = (int) 'a';
-		String[] encryptedMessage;
+		char[] encryptedMessage = new char[message.length()];
 		
 		//Printing original message
 		System.out.println("n = 0: " + message);
@@ -27,7 +27,7 @@ public class CaeserCipher {
 	//Decodes a message
 	public static void decode(String message) {
 		int base = (int) 'a';
-		String[] decryptedMessage;
+		char[] decryptedMessage = new char[message.length()];
 		
 		//Printing original message
 		System.out.println("n = 0: " + message);
