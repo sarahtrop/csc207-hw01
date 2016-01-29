@@ -53,7 +53,7 @@ public class CaeserCipher {
 		
 		System.out.println("This program encrypts and decrypts messages using the Caeser Cipher.\n Would you like to encode or decode a message?");
 		//GET WORD TO DETERMINE ENCODE OR DECODE
-		System.out.println("Enter the string to encode:") //GET MESSAGE TO ENCODE OR DECODE
+		System.out.println("Enter the string to encode:"); //GET MESSAGE TO ENCODE OR DECODE
 		
 		if (choice == "encode")
 			encode(message);
