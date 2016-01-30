@@ -4,51 +4,69 @@ public class CaeserCipher {
 
 	//Encodes a message
 	public static void encode(String message) {
-		int base = (int) 'a';
-		char[] encryptedChars = new char[message.length()];
-		String encryptedString;
+		int numLetters = message.length();
+		int base = (int)'a';
+		
+		//declaring and initialzing arrays to be used later
+		char[] messageCharArray = message.toCharArray();
+		int[] messageIntArray = new int[numLetters];
+		
+		int[] encodedIntArray = new int[numLetters];
+		char[] encodedCharArray = new char[numLetters];
+		
+		//transposing characters in message to integers
+		for (int i=0; i<numLetters; i++) {
+			messageIntArray[i] = (int)messageCharArray[i] - base;
+		}
 		
 		//Printing original message
 		System.out.println("n = 0: " + message);
-		
+				
 		//Encoding message using n 1-25
-		for (int i=1; i<26; i++) {
-			for (int j=0; j<message.length(); j++) {
+		for (int j=1; j<26; j++) {
+			for (int k=0; k<message.length(); k++) {
 				//encrypting character
-				int current = (((int)message.charAt(j)) - base);
-				int encryptedNum = (current + i) % 26;
-				char encryptedChar = (char) (encryptedNum + base);
-				//adding encrypted character to a new string
-				encryptedChars[j] = encryptedChar;
+				int encryptedNum = (encodedIntArray[k] + j) % 26;
+				encryptedCharArray[k] = (char)(encryptedNum + base);
 			}
-			//printing the new encrypted string
-			encryptedString = new String(encryptedChars);
-			System.out.println("n = " + i + ": " + encryptedString);
 		}
+		//printing the new encrypted string
+		String encryptedString = new String(encryptedCharArray);
+		System.out.println("n = " + i + ": " + encryptedString);
 	}
 	
 	//Decodes a message
 	public static void decode(String message) {
-		int base = (int) 'a';
-		char[] decryptedChars = new char[message.length()];
-		String decryptedString;
-		
-		//Printing original message
-		System.out.println("n = 0: " + message);
-		
-		//Decoding message using n 1-25
-		for (int i=1; i<26; i++) {
-			for (int j=0; j<message.length(); j++) {
-				//decrypting character
-				int current = (((int)message.charAt(j)) - base);
-				int decryptedNum = (current - i) % 26;
-				char decryptedChar = (char) (decryptedNum + base);
-				//adding encrypted character to a new string
-				decryptedChars[j] = decryptedChar;
+		//Decodes a message
+		public static void encode(String message) {
+			int numLetters = message.length();
+			int base = (int)'a';
+			
+			//declaring and initialzing arrays to be used later
+			char[] messageCharArray = message.toCharArray();
+			int[] messageIntArray = new int[numLetters];
+			
+			int[] decodedIntArray = new int[numLetters];
+			char[] decodedCharArray = new char[numLetters];
+			
+			//transposing characters in message to integers
+			for (int i=0; i<numLetters; i++) {
+				messageIntArray[i] = (int)messageCharArray[i] - base;
 			}
 			
+			//Printing original message
+			System.out.println("n = 0: " + message);
+					
+			//Decoding message using n 1-25
+			for (int j=1; j<26; j++) {
+				for (int k=0; k<message.length(); k++) {
+					//decrypting character
+					int decryptedNum = (decodedIntArray[k] - j) % 26;
+					encryptedCharArray[k] = (char)(encryptedNum + base);
+				}
+			}
 			//printing the new decrypted string
-			decryptedString = new String(decryptedChars);
+			String decryptedString = new String(decryptedCharArray);
 			System.out.println("n = " + i + ": " + decryptedString);
 		}
 	}
