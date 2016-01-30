@@ -1,10 +1,12 @@
+import java.util.Scanner
 
 public class CaeserCipher {
 
 	//Encodes a message
 	public static void encode(String message) {
 		int base = (int) 'a';
-		char[] encryptedMessage = new char[message.length()];
+		char[] encryptedChars = new char[message.length()];
+		String encryptedString;
 		
 		//Printing original message
 		System.out.println("n = 0: " + message);
@@ -17,17 +19,19 @@ public class CaeserCipher {
 				int encryptedNum = (current + i) % 26;
 				char encryptedChar = (char) (encryptedNum + base);
 				//adding encrypted character to a new string
-				encryptedMessage[j] = encryptedChar;
+				encryptedChars[j] = encryptedChar;
 			}
 			//printing the new encrypted string
-			System.out.println("n = " + i + ": " + encryptedMessage);
+			encryptedString = new String(encryptedChars);
+			System.out.println("n = " + i + ": " + encryptedString);
 		}
 	}
 	
 	//Decodes a message
 	public static void decode(String message) {
 		int base = (int) 'a';
-		char[] decryptedMessage = new char[message.length()];
+		char[] decryptedChars = new char[message.length()];
+		String decryptedString;
 		
 		//Printing original message
 		System.out.println("n = 0: " + message);
@@ -40,20 +44,24 @@ public class CaeserCipher {
 				int decryptedNum = (current - i) % 26;
 				char decryptedChar = (char) (decryptedNum + base);
 				//adding encrypted character to a new string
-				decryptedMessage[j] = decryptedChar;
+				decryptedChars[j] = decryptedChar;
 			}
+			
 			//printing the new decrypted string
-			System.out.println("n = " + i + ": " + decryptedMessage);
+			decryptedString = new String(decryptedChars);
+			System.out.println("n = " + i + ": " + decryptedString);
 		}
 	}
 	
 	public static void main(String[] args) {
-		String choice = "encode";
-		String message = "helloworld";
 		
 		System.out.println("This program encrypts and decrypts messages using the Caeser Cipher.\n Would you like to encode or decode a message?");
-		//GET WORD TO DETERMINE ENCODE OR DECODE
-		System.out.println("Enter the string to encode:"); //GET MESSAGE TO ENCODE OR DECODE
+		Scanner choiceIn = new Scanner(System.in);
+		String choice = in.nextLine();
+		
+		System.out.println("Enter the string to encode:");
+		Scanner messageIn = new Scanner(System.in);
+		String message = in.nextLine();
 		
 		if (choice == "encode")
 			encode(message);
