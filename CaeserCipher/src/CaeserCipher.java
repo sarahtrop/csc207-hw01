@@ -48,8 +48,8 @@ public class CaeserCipher {
 	}
 	
 	public static void main(String[] args) {
-		String choice;
-		String message;
+		String choice = "encode";
+		String message = "helloworld";
 		
 		System.out.println("This program encrypts and decrypts messages using the Caeser Cipher.\n Would you like to encode or decode a message?");
 		//GET WORD TO DETERMINE ENCODE OR DECODE
