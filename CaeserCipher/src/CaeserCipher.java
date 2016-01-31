@@ -1,4 +1,4 @@
-import java.util.Scanner
+import java.util.Scanner;
 
 public class CaeserCipher {
 
@@ -76,15 +76,20 @@ public class CaeserCipher {
 		System.out.println("This program encrypts and decrypts messages using the Caeser Cipher.\n Would you like to encode or decode a message?");
 		Scanner choiceIn = new Scanner(System.in);
 		String choice = in.nextLine();
-		
-		System.out.println("Enter the string to encode:");
-		Scanner messageIn = new Scanner(System.in);
-		String message = in.nextLine();
-		
-		if (choice == "encode")
+
+		if (choice == "encode") {
+			System.out.println("Enter the string to encode:");
+			Scanner messageIn = new Scanner(System.in);
+			String message = messageIn.nextLine();
 			encode(message);
-		else if (choice == "decode")
+		}
+		
+		else if (choice == "decode") {
+			System.out.println("Enter the string to decode:");
+			Scanner messageIn = new Scanner(System.in);
+			String message = messageIn.nextLine();
 			decode(message);
+		}
 	}
 
 }
