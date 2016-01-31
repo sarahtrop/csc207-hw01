@@ -79,11 +79,10 @@ public class VigenereCipher {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println("This program encrypts and decrypts messages using the Vigenere Cipher. Would you like to encode or decode a message?");
+		System.out.println("This program encrypts and decrypts messages using the Vigenere Cipher.\nWould you like to encode or decode a message?");
 		Scanner choiceIn = new Scanner(System.in);
 		String choice = choiceIn.nextLine();
 		
-	
 		if (choice == "encode") {
 			System.out.println("Enter the string to encode:");
 			Scanner messageIn = new Scanner(System.in);
