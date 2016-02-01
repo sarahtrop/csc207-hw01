@@ -2,109 +2,78 @@ import java.util.Scanner;
 
 public class VigenereCipher {
 
-	public static void encode(String message, String keyword) {
-		int numLetters = message.length();
+	public static int[] convertToInts(char[] chArray) {
+		int[] intArray = new int[chArray.length];
 		int base = (int)'a';
 		
-		//declaring and initializing arrays to be used later
-		char[] messageCharArray = message.toCharArray();
-		char[] keywordCharArray = new char[numLetters];
-		
-		for (int l=0; l<numLetters; l++) {
-			keywordCharArray[l] = keyword.charAt(l % keyword.length());
+		for (int i=0; i<chArray.length; i++) {
+			intArray[i] = (int)chArray[i] - base;
 		}
-		
-		int[] messageIntArray = new int[numLetters];
-		int[] keywordIntArray = new int[numLetters];
-		
-		int[] encodedIntArray = new int[numLetters];
-		char[] encodedCharArray = new char[numLetters];
-		
-		//transposing characters in message and keyword to integers
-		for (int i=0; i<numLetters; i++) {
-			messageIntArray[i] = (int)messageCharArray[i] - base;
-			keywordIntArray[i] = (int)keywordCharArray[i] - base;
-		}
-		
-		//encoding message
-		for (int j=0; j<numLetters; j++) {
-			encodedIntArray[j] = messageIntArray[j] + keywordIntArray[j];
-		}
-		
-		//converting back to characters
-		for (int k=0; k<numLetters; k++) {
-			encodedCharArray[k] = (char)(encodedIntArray[k] + base);
-		}
-		
-		String encodedMessage = new String(encodedCharArray);
-		System.out.println(encodedMessage);
+		return intArray;
 	}
 	
-	public static void decode(String message, String keyword) {
-		int numLetters = message.length();
-		int base = (int)'a';
-		
-		//declaring and initializing arrays to be used later
-		char[] messageCharArray = message.toCharArray();
-		char[] keywordCharArray = new char[numLetters];
-		
-		for (int l=0; l<numLetters; l++) {
+	public static char[] wrapKey(String keyword, int length) {
+		char[] keywordCharArray = new char[length];
+		for (int l=0; l<length; l++) {
 			keywordCharArray[l] = keyword.charAt(l % keyword.length());
 		}
+		return keywordCharArray;
+	}
+	
+	public static char encryptOrDecryptChar(int ch, int keyCh, String cryptDir) {
+		int base = (int)'a';
 		
-		int[] messageIntArray = new int[numLetters];
-		int[] keywordIntArray = new int[numLetters];
+		if (cryptDir.equals("encrypt")) { int num = ch + keyCh; }
+		else if (cryptDir.equals("decrypt")) { int num = ch - keyCh; }
 		
-		int[] decodedIntArray = new int[numLetters];
-		char[] decodedCharArray = new char[numLetters];
+		char finalChar = (char)(num + base);
+		return finalChar;
+	}
+	
+	public static void encrypt(String message, String key) {
+		char[] keyCharArray = wrapKey(key, message.length());
+		int[] messageIntArray = convertToInts(message.toCharArray());
+		int[] keyIntArray = convertToInts(keyCharArray);
+		char[] encryptedCharArray = new char[message.length()];
 		
-		//transposing characters in message and keyword to integers
-		for (int i=0; i<numLetters; i++) {
-			messageIntArray[i] = (int)messageCharArray[i] - base;
-			keywordIntArray[i] = (int)keywordCharArray[i] - base;
+		for (int j=0; j<message.length(); j++) {
+			encryptedCharArray[j] = encryptOrDecryptChar(messageIntArray[j], keyIntArray[j], "encrypt");
 		}
 		
-		//decoding message
-		for (int j=0; j<numLetters; j++) {
-			decodedIntArray[j] = messageIntArray[j] - keywordIntArray[j];
+		String encryptedMessage = encryptedCharArray.toString();
+		System.out.println(encryptedMessage);
+	}
+	
+	public static void decrypt(String message, String key) {
+		char[] keyCharArray = wrapKey(key, message.length());
+		int[] messageIntArray = convertToInts(message.toCharArray());
+		int[] keyIntArray = convertToInts(keyCharArray);
+		char[] decryptedCharArray = new char[message.length()];
+		
+		for (int j=0; j<message.length(); j++) {
+			decryptedCharArray[j] = encryptOrDecryptChar(messageIntArray[j], keyIntArray[j], "decrypt");
 		}
 		
-		//converting back to characters
-		for (int k=0; k<numLetters; k++) {
-			decodedCharArray[k] = (char)(decodedIntArray[k] + base);
-		}
-		
-		String decodedMessage = new String(decodedCharArray);
-		System.out.println(decodedMessage);
+		String decryptedMessage = new String(decryptedCharArray);
+		System.out.println(decryptedMessage);
 	}
 	
 	public static void main(String[] args) {
 		System.out.println("This program encrypts and decrypts messages using the Vigenere Cipher.\nWould you like to encode or decode a message?");
 		Scanner choiceIn = new Scanner(System.in);
 		String choice = choiceIn.nextLine();
+		Scanner messageIn = new Scanner(System.in);
 		
-		if (choice == "encode") {
-			System.out.println("Enter the string to encode:");
-			Scanner messageIn = new Scanner(System.in);
-			String message = messageIn.nextLine();
-			
-			System.out.println("Enter the key:");
-			Scanner keyIn = new Scanner(System.in);
-			String key = keyIn.nextLine();
-			
-			encode(message, key);
-		}
+		if (choice.equals("encrypt")) { System.out.println("Enter the string to encrypt:"); }
+		else if (choice.equals("decrypt")) { System.out.println("Enter the string to decrypt:"); }
+		String message = messageIn.nextLine();
 		
-		else if (choice == "decode") {
-			System.out.println("Enter the string to decode:");
-			Scanner messageIn = new Scanner(System.in);
-			String message = messageIn.nextLine();
-			
-			System.out.println("Enter the key:");
-			Scanner keyIn = new Scanner(System.in);
-			String key = keyIn.nextLine();
-			
-			decode(message, key);
+		System.out.println("Enter the key:");
+		Scanner keyIn = new Scanner(System.in);
+		String key = keyIn.nextLine();
+		
+		if (choice.equals("encrypt")) { encrypt(message, key); }
+		else if (choice.equals("decrypt")) { decrypt(message, key); }
 		}
 	}
 
