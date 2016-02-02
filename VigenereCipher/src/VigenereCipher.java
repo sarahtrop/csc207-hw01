@@ -60,17 +60,16 @@ public class VigenereCipher {
 	
 	public static void main(String[] args) {
 		System.out.println("This program encrypts and decrypts messages using the Vigenere Cipher.\nWould you like to encode or decode a message?");
-		Scanner choiceIn = new Scanner(System.in);
-		String choice = choiceIn.nextLine();
-		Scanner messageIn = new Scanner(System.in);
+		Scanner in = new Scanner(System.in);
+		String choice = in.nextLine();
+
 		
 		if (choice.equals("encrypt")) { System.out.println("Enter the string to encrypt:"); }
 		else if (choice.equals("decrypt")) { System.out.println("Enter the string to decrypt:"); }
-		String message = messageIn.nextLine();
+		String message = in.nextLine();
 		
 		System.out.println("Enter the key:");
-		Scanner keyIn = new Scanner(System.in);
-		String key = keyIn.nextLine();
+		String key = in.nextLine();
 		
 		if (choice.equals("encrypt")) { encrypt(message, key); }
 		else if (choice.equals("decrypt")) { decrypt(message, key); }

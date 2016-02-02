@@ -50,18 +50,17 @@ public class CaeserCipher {
 	public static void main(String[] args) {
 		
 		System.out.println("This program encrypts and decrypts messages using the Caeser Cipher.\n Would you like to enccrypt or decrypt a message?");
-		Scanner choiceIn = new Scanner(System.in);
+		Scanner in = new Scanner(System.in);
 		String choice = in.nextLine();
-		Scanner messageIn = new Scanner(System.in);
 		
 		if (choice.equals("encrypt")) { 
 			System.out.println("Enter the string to encrypt:"); 
-			String message = messageIn.nextLine();
+			String message = in.nextLine();
 			encrypt(message);
 			}
 		else if (choice.equals("decrypt")) { 
 			System.out.println("Enter the string to decrypt:"); 
-			String message = messageIn.nextLine();
+			String message = in.nextLine();
 			decrypt(message);
 			}
 	}
