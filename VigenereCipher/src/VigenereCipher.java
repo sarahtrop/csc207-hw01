@@ -64,15 +64,17 @@ public class VigenereCipher {
 		String choice = in.nextLine();
 
 		
-		if (choice.equals("encrypt")) { System.out.println("Enter the string to encrypt:"); }
-		else if (choice.equals("decrypt")) { System.out.println("Enter the string to decrypt:"); }
+		if (choice.equals("encrypt")) { System.out.print("Enter the string to encrypt:"); }
+		else if (choice.equals("decrypt")) { System.out.print("Enter the string to decrypt:"); }
 		String message = in.nextLine();
 		
-		System.out.println("Enter the key:");
+		System.out.print("Enter the key:");
 		String key = in.nextLine();
 		
 		if (choice.equals("encrypt")) { encrypt(message, key); }
 		else if (choice.equals("decrypt")) { decrypt(message, key); }
+		
+		in.close();
 		}
 	}
 

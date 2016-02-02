@@ -54,15 +54,16 @@ public class CaeserCipher {
 		String choice = in.nextLine();
 		
 		if (choice.equals("encrypt")) { 
-			System.out.println("Enter the string to encrypt:"); 
+			System.out.print("Enter the string to encrypt:"); 
 			String message = in.nextLine();
 			encrypt(message);
 			}
 		else if (choice.equals("decrypt")) { 
-			System.out.println("Enter the string to decrypt:"); 
+			System.out.print("Enter the string to decrypt:"); 
 			String message = in.nextLine();
 			decrypt(message);
 			}
+		in.close();
 	}
 
 }
