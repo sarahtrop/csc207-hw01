@@ -28,9 +28,7 @@ public class VigenereCipher {
 			num = (ch + keyCh) % 26;
 		} else if (cryptDir.equals("decrypt")) {
 			num = (ch - keyCh) % 26;
-			if (num < 0) {
-				num += 26;
-			}
+			if (num < 0) { num += 26; } //because sometimes mod outputs a negative number
 		}
 		char finalChar = (char) (num + base);
 		return finalChar;

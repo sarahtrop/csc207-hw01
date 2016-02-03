@@ -23,9 +23,7 @@ public class CaeserCipher {
 				num = (intArray[k] + itr) % 26;
 			} else if (cryptDir.equals("decrypt")) {
 				num = (intArray[k] - itr) % 26;
-				if (num < 0) {
-					num += 26;
-				}
+				if (num < 0) { num += 26; } //because sometimes mod outputs a negative number
 			}
 			newCharArray[k] = (char) (num + base);
 		}
